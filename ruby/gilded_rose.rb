@@ -74,9 +74,7 @@ class GildedRose
     end
   end
 
-  def sulfuras_quality(item)
-
-  end
+  def sulfuras_quality(item); end
 
   def backstage_quality(item)
 

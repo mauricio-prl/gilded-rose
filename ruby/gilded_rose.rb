@@ -65,7 +65,13 @@ class GildedRose
   end
 
   def brie_quality(item)
+    item.decrease_sell_in
 
+    if item.sell_in.positive?
+      item.increase_quality
+    else
+      item.increase_quality(2)
+    end
   end
 
   def sulfuras_quality(item)
@@ -107,6 +113,8 @@ class Item
   end
 
   def increase_quality(qty = 1)
+    return if @quality == 50
+
     @quality += qty
   end
 

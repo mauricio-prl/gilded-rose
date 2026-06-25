@@ -77,7 +77,17 @@ class GildedRose
   def sulfuras_quality(item); end
 
   def backstage_quality(item)
+    item.decrease_sell_in
 
+    if item.sell_in.negative?
+      item.decrease_quality(item.quality)
+    elsif item.sell_in <= 5
+      item.increase_quality(3)
+    elsif item.sell_in <=10
+      item.increase_quality(2)
+    else
+      item.increase_quality
+    end
   end
 
   # def conjured_quality(item)
@@ -105,15 +115,15 @@ class Item
   end
 
   def decrease_quality(qty = 1)
-    return if @quality.zero?
-
     @quality -= qty
+
+    @quality = 0 if @quality < 0
   end
 
   def increase_quality(qty = 1)
-    return if @quality == 50
-
     @quality += qty
+
+    @quality = 50 if @quality > 50
   end
 
   def decrease_sell_in

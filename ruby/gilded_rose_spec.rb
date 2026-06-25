@@ -128,14 +128,14 @@ describe GildedRose do
     let(:sell_in) { 10 }
     let(:quality) { 20 }
 
-    xit { expect(item.quality).to eq(18) }
+    it { expect(item.quality).to eq(18) }
     it { expect(item.sell_in).to eq(9) }
 
     context 'after sell date' do
       let(:sell_in) { 0 }
 
       it { expect(item.sell_in).to eq(-1) }
-      xit { expect(item.quality).to eq(16) }
+      it { expect(item.quality).to eq(16) }
     end
 
     context 'near zero quality' do
@@ -143,7 +143,7 @@ describe GildedRose do
       let(:quality) { 3 }
 
       it { expect(item.sell_in).to eq(-1) }
-      xit { expect(item.quality).to eq(0) }
+      it { expect(item.quality).to eq(0) }
     end
   end
 

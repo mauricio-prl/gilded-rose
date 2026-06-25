@@ -14,6 +14,7 @@ class GildedRose
     when 'Aged Brie' then brie_quality(item)
     when 'Sulfuras, Hand of Ragnaros' then sulfuras_quality(item)
     when 'Backstage passes to a TAFKAL80ETC concert' then backstage_quality(item)
+    when 'Conjured Mana Cake' then conjured_quality(item)
     else normal_quality(item)
     end
   end
@@ -44,9 +45,15 @@ class GildedRose
     end
   end
 
-  # def conjured_quality(item)
+  def conjured_quality(item)
+    item.decrease_sell_in
 
-  # end
+    if item.sell_in.negative?
+      item.decrease_quality(4)
+    else
+      item.decrease_quality(2)
+    end
+  end
 
   def normal_quality(item)
     item.decrease_sell_in

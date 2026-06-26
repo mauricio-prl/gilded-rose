@@ -1,4 +1,95 @@
 class GildedRose
+  class Normal
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update_quality
+      item.decrease_sell_in
+
+      if item.sell_in.positive?
+        item.decrease_quality
+      else
+        item.decrease_quality(2)
+      end
+    end
+  end
+
+  class Brie
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update_quality
+      item.decrease_sell_in
+
+      if item.sell_in.positive?
+        item.increase_quality
+      else
+        item.increase_quality(2)
+      end
+    end
+  end
+
+  class Sulfuras
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update_quality; end
+  end
+
+  class Backstage
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update_quality
+      item.decrease_sell_in
+
+      if item.sell_in.negative?
+        item.decrease_quality(item.quality)
+      elsif item.sell_in <= 5
+        item.increase_quality(3)
+      elsif item.sell_in <=10
+        item.increase_quality(2)
+      else
+        item.increase_quality
+      end
+    end
+  end
+
+  class Conjured
+    attr_reader :item
+
+    def initialize(item)
+      @item = item
+    end
+
+    def update_quality
+      item.decrease_sell_in
+
+      if item.sell_in.negative?
+        item.decrease_quality(4)
+      else
+        item.decrease_quality(2)
+      end
+    end
+  end
+
+  STRATEGIES = { 'Aged Brie' => Brie,
+                 'Sulfuras, Hand of Ragnaros' => Sulfuras,
+                 'Backstage passes to a TAFKAL80ETC concert' => Backstage,
+                 'Conjured Mana Cake' => Conjured }.freeze
+
   def initialize(items)
     @items = items
   end
@@ -10,59 +101,8 @@ class GildedRose
   private
 
   def update_item_quality(item)
-    case item.name
-    when 'Aged Brie' then brie_quality(item)
-    when 'Sulfuras, Hand of Ragnaros' then sulfuras_quality(item)
-    when 'Backstage passes to a TAFKAL80ETC concert' then backstage_quality(item)
-    when 'Conjured Mana Cake' then conjured_quality(item)
-    else normal_quality(item)
-    end
-  end
-
-  def brie_quality(item)
-    item.decrease_sell_in
-
-    if item.sell_in.positive?
-      item.increase_quality
-    else
-      item.increase_quality(2)
-    end
-  end
-
-  def sulfuras_quality(item); end
-
-  def backstage_quality(item)
-    item.decrease_sell_in
-
-    if item.sell_in.negative?
-      item.decrease_quality(item.quality)
-    elsif item.sell_in <= 5
-      item.increase_quality(3)
-    elsif item.sell_in <=10
-      item.increase_quality(2)
-    else
-      item.increase_quality
-    end
-  end
-
-  def conjured_quality(item)
-    item.decrease_sell_in
-
-    if item.sell_in.negative?
-      item.decrease_quality(4)
-    else
-      item.decrease_quality(2)
-    end
-  end
-
-  def normal_quality(item)
-    item.decrease_sell_in
-
-    if item.sell_in.positive?
-      item.decrease_quality
-    else
-      item.decrease_quality(2)
-    end
+    strategy = STRATEGIES.fetch(item.name, Normal)
+    strategy.new(item).update_quality
   end
 end
 

@@ -1,11 +1,15 @@
 class GildedRose
-  class Normal
+  class BaseItem
     attr_reader :item
 
     def initialize(item)
       @item = item
     end
 
+    def update_quality; end
+  end
+
+  class Normal < BaseItem
     def update_quality
       item.decrease_sell_in
 
@@ -17,13 +21,7 @@ class GildedRose
     end
   end
 
-  class Brie
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
+  class Brie < BaseItem
     def update_quality
       item.decrease_sell_in
 
@@ -35,23 +33,10 @@ class GildedRose
     end
   end
 
-  class Sulfuras
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
-    def update_quality; end
+  class Sulfuras < BaseItem
   end
 
-  class Backstage
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
+  class Backstage < BaseItem
     def update_quality
       item.decrease_sell_in
 
@@ -67,13 +52,7 @@ class GildedRose
     end
   end
 
-  class Conjured
-    attr_reader :item
-
-    def initialize(item)
-      @item = item
-    end
-
+  class Conjured < BaseItem
     def update_quality
       item.decrease_sell_in
 

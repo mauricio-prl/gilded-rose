@@ -121,14 +121,33 @@ defmodule GildedRose do
     # end
   end
 
-  defp update_backstage_item(item) do
-  end
-
   defp update_brie_item(item) do
+    sell_in = item.sell_in - 1
+
+    quality =
+      cond do
+        sell_in <= 0 -> item.quality + 2
+        true -> item.quality + 1
+      end
+
+    build_item(item, sell_in, ensure_max_quality(quality))
   end
 
-  defp update_sulfuras_item(item) do
+  defp update_backstage_item(item) do
+    sell_in = item.sell_in - 1
+
+    quality =
+      cond do
+        sell_in <= 0 -> 0
+        sell_in <= 5 -> item.quality + 3
+        sell_in <= 10 -> item.quality + 2
+        true -> item.quality + 1
+      end
+
+    build_item(item, sell_in, ensure_max_quality(quality))
   end
+
+  defp update_sulfuras_item(item), do: item
 
   defp update_normal_item(item) do
     sell_in = item.sell_in - 1
@@ -139,8 +158,10 @@ defmodule GildedRose do
         true -> item.quality - 1
       end
 
-    %{item | sell_in: sell_in, quality: ensure_no_negative(quality)}
+    build_item(item, sell_in, ensure_no_negative(quality))
   end
 
+  defp build_item(item, sell_in, quality), do: %{item | sell_in: sell_in, quality: quality}
   defp ensure_no_negative(quality), do: if(quality < 0, do: 0, else: quality)
+  defp ensure_max_quality(quality), do: if(quality > 50, do: 50, else: quality)
 end

@@ -1,7 +1,7 @@
 defmodule GildedRoseTest do
   use ExUnit.Case, async: true
 
-  import ExUnit.CaptureIO
+  # import ExUnit.CaptureIO
 
   # test "Approval test 30 days" do
   #   expected =
@@ -48,68 +48,68 @@ defmodule GildedRoseTest do
     assert item.name == "foo"
   end
 
-  # test "Aged Brie increases in quality" do
-  #   item = update_item("Aged Brie", 10, 20)
+  test "Aged Brie increases in quality" do
+    item = update_item("Aged Brie", 10, 20)
 
-  #   assert item.sell_in == 9
-  #   assert item.quality == 21
-  # end
+    assert item.sell_in == 9
+    assert item.quality == 21
+  end
 
-  # test "Aged Brie after sell date" do
-  #   item = update_item("Aged Brie", 0, 20)
+  test "Aged Brie after sell date" do
+    item = update_item("Aged Brie", 0, 20)
 
-  #   assert item.sell_in == -1
-  #   assert item.quality == 22
-  # end
+    assert item.sell_in == -1
+    assert item.quality == 22
+  end
 
-  # test "Aged Brie at max quality" do
-  #   item = update_item("Aged Brie", 5, 50)
+  test "Aged Brie at max quality" do
+    item = update_item("Aged Brie", 5, 50)
 
-  #   assert item.sell_in == 4
-  #   assert item.quality == 50
-  # end
+    assert item.sell_in == 4
+    assert item.quality == 50
+  end
 
-  # test "Sulfuras never changes" do
-  #   item = update_item("Sulfuras, Hand of Ragnaros", 0, 80)
+  test "Sulfuras never changes" do
+    item = update_item("Sulfuras, Hand of Ragnaros", 0, 80)
 
-  #   assert item.sell_in == 0
-  #   assert item.quality == 80
-  # end
+    assert item.sell_in == 0
+    assert item.quality == 80
+  end
 
-  # test "Backstage passes increase by 1 when sell_in > 10" do
-  #   item = update_item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
+  test "Backstage passes increase by 1 when sell_in > 10" do
+    item = update_item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
 
-  #   assert item.sell_in == 14
-  #   assert item.quality == 21
-  # end
+    assert item.sell_in == 14
+    assert item.quality == 21
+  end
 
-  # test "Backstage passes increase by 2 when sell_in is 10 days or less" do
-  #   item = update_item("Backstage passes to a TAFKAL80ETC concert", 10, 20)
+  test "Backstage passes increase by 2 when sell_in is 10 days or less" do
+    item = update_item("Backstage passes to a TAFKAL80ETC concert", 10, 20)
 
-  #   assert item.sell_in == 9
-  #   assert item.quality == 22
-  # end
+    assert item.sell_in == 9
+    assert item.quality == 22
+  end
 
-  # test "Backstage passes increase by 3 when sell_in is 5 days or less" do
-  #   item = update_item("Backstage passes to a TAFKAL80ETC concert", 5, 20)
+  test "Backstage passes increase by 3 when sell_in is 5 days or less" do
+    item = update_item("Backstage passes to a TAFKAL80ETC concert", 5, 20)
 
-  #   assert item.sell_in == 4
-  #   assert item.quality == 23
-  # end
+    assert item.sell_in == 4
+    assert item.quality == 23
+  end
 
-  # test "Backstage passes drop to 0 after the concert" do
-  #   item = update_item("Backstage passes to a TAFKAL80ETC concert", 0, 20)
+  test "Backstage passes drop to 0 after the concert" do
+    item = update_item("Backstage passes to a TAFKAL80ETC concert", 0, 20)
 
-  #   assert item.sell_in == -1
-  #   assert item.quality == 0
-  # end
+    assert item.sell_in == -1
+    assert item.quality == 0
+  end
 
-  # test "Backstage passes near max quality" do
-  #   item = update_item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+  test "Backstage passes near max quality" do
+    item = update_item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
 
-  #   assert item.sell_in == 4
-  #   assert item.quality == 50
-  # end
+    assert item.sell_in == 4
+    assert item.quality == 50
+  end
 
   # @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
   # test "Conjured items degrade quality twice as fast" do

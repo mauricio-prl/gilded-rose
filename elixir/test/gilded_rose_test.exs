@@ -111,7 +111,6 @@ defmodule GildedRoseTest do
     assert item.quality == 50
   end
 
-  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
   test "Conjured items degrade quality twice as fast" do
     item = update_item("Conjured Mana Cake", 10, 20)
 
@@ -130,7 +129,6 @@ defmodule GildedRoseTest do
     assert item.sell_in == -1
   end
 
-  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
   test "Conjured items after sell date degrade quality by 4" do
     item = update_item("Conjured Mana Cake", 0, 20)
 
@@ -143,7 +141,6 @@ defmodule GildedRoseTest do
     assert item.sell_in == -1
   end
 
-  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
   test "Conjured items never go below zero quality" do
     item = update_item("Conjured Mana Cake", 0, 3)
 

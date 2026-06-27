@@ -12,6 +12,7 @@ defmodule GildedRose do
       "Aged Brie" -> update_brie_item(item)
       "Backstage passes to a TAFKAL80ETC concert" -> update_backstage_item(item)
       "Sulfuras, Hand of Ragnaros" -> update_sulfuras_item(item)
+      "Conjured Mana Cake" -> update_conjured_item(item)
       _ -> update_normal_item(item)
     end
   end
@@ -43,6 +44,18 @@ defmodule GildedRose do
   end
 
   defp update_sulfuras_item(item), do: item
+
+  defp update_conjured_item(item) do
+    sell_in = item.sell_in - 1
+
+    quality =
+      cond do
+        sell_in < 0 -> item.quality - 4
+        true -> item.quality - 2
+      end
+
+    build_item(item, sell_in, ensure_no_negative(quality))
+  end
 
   defp update_normal_item(item) do
     sell_in = item.sell_in - 1

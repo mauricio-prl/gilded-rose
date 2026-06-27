@@ -11,3 +11,8 @@ venv
 **/.DS_Store/*
 
 .tool-versions
+
+
+/elixir/_build
+/elixir/.expert
+/elixir/cover

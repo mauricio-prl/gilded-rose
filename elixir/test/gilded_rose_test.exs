@@ -111,58 +111,58 @@ defmodule GildedRoseTest do
     assert item.quality == 50
   end
 
-  # @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
-  # test "Conjured items degrade quality twice as fast" do
-  #   item = update_item("Conjured Mana Cake", 10, 20)
+  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
+  test "Conjured items degrade quality twice as fast" do
+    item = update_item("Conjured Mana Cake", 10, 20)
 
-  #   assert item.quality == 18
-  # end
+    assert item.quality == 18
+  end
 
-  # test "Conjured items still decrease sell_in" do
-  #   item = update_item("Conjured Mana Cake", 10, 20)
+  test "Conjured items still decrease sell_in" do
+    item = update_item("Conjured Mana Cake", 10, 20)
 
-  #   assert item.sell_in == 9
-  # end
+    assert item.sell_in == 9
+  end
 
-  # test "Conjured items after sell date still decrease sell_in" do
-  #   item = update_item("Conjured Mana Cake", 0, 20)
+  test "Conjured items after sell date still decrease sell_in" do
+    item = update_item("Conjured Mana Cake", 0, 20)
 
-  #   assert item.sell_in == -1
-  # end
+    assert item.sell_in == -1
+  end
 
-  # @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
-  # test "Conjured items after sell date degrade quality by 4" do
-  #   item = update_item("Conjured Mana Cake", 0, 20)
+  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
+  test "Conjured items after sell date degrade quality by 4" do
+    item = update_item("Conjured Mana Cake", 0, 20)
 
-  #   assert item.quality == 16
-  # end
+    assert item.quality == 16
+  end
 
-  # test "Conjured items near zero quality still decrease sell_in" do
-  #   item = update_item("Conjured Mana Cake", 0, 3)
+  test "Conjured items near zero quality still decrease sell_in" do
+    item = update_item("Conjured Mana Cake", 0, 3)
 
-  #   assert item.sell_in == -1
-  # end
+    assert item.sell_in == -1
+  end
 
-  # @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
-  # test "Conjured items never go below zero quality" do
-  #   item = update_item("Conjured Mana Cake", 0, 3)
+  @tag skip: "Equivalent to xit in Ruby spec (pending Conjured quality behavior)"
+  test "Conjured items never go below zero quality" do
+    item = update_item("Conjured Mana Cake", 0, 3)
 
-  #   assert item.quality == 0
-  # end
+    assert item.quality == 0
+  end
 
-  # test "global quality rules: quality is never more than 50" do
-  #   item = update_item("Aged Brie", 2, 50)
+  test "global quality rules: quality is never more than 50" do
+    item = update_item("Aged Brie", 2, 50)
 
-  #   assert item.sell_in == 1
-  #   assert item.quality <= 50
-  # end
+    assert item.sell_in == 1
+    assert item.quality <= 50
+  end
 
-  # test "global quality rules: Sulfuras is exempt" do
-  #   item = update_item("Sulfuras, Hand of Ragnaros", 5, 80)
+  test "global quality rules: Sulfuras is exempt" do
+    item = update_item("Sulfuras, Hand of Ragnaros", 5, 80)
 
-  #   assert item.sell_in == 5
-  #   assert item.quality == 80
-  # end
+    assert item.sell_in == 5
+    assert item.quality == 80
+  end
 
   defp update_item(name, sell_in, quality) do
     [%Item{name: name, sell_in: sell_in, quality: quality}]

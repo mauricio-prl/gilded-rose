@@ -1,17 +1,7 @@
 defmodule GildedRoseTest do
   use ExUnit.Case, async: true
 
-  # import ExUnit.CaptureIO
-
-  # test "Approval test 30 days" do
-  #   expected =
-  #     File.read!("test/ApprovalTest.ThirtyDays.verified.txt") |> String.replace("\r\n", "\n")
-
-  #   result =
-  #     capture_io(fn -> GildedRose.TextTestFixture.run(30) end) |> String.replace("\r\n", "\n")
-
-  #   assert result == expected
-  # end
+  import ExUnit.CaptureIO
 
   test "normal items: decreases sell_in and quality" do
     item = update_item("foo", 10, 20)
